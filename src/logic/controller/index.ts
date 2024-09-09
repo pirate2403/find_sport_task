@@ -31,6 +31,9 @@ export class Controller {
   }
 
   validate() {
-    return this._fields.every((field) => field.validate())
+    return this._fields.reduce((acc, field) => {
+      const fieldIsInvalid = field.validate();
+      return acc || fieldIsInvalid;  
+    }, false);
   }
 }
