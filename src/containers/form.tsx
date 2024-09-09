@@ -13,9 +13,12 @@ function Form() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const isValid = controller.validate()
-    if (!isValid) return
-    console.log(toJS(controller.fields))
+    const isInvalid = controller.validate()
+    if (isInvalid) {
+      alert('Form is invalid')
+    } else {
+      alert(JSON.stringify(toJS(controller.fieldsData), null, 2))
+    }
   }
 
   return (
